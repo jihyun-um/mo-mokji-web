@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Header from './components/Header';
 import Action from './components/Action';
@@ -11,14 +12,17 @@ const App = () => {
   const [selectedItem, setSelectedItem] = useState();
 
   useEffect(() => {
-    const localItems = JSON.parse(localStorage.getItem('items'));
-    if (localItems != null) {
-      setItems(localItems);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
+    axios
+      .get(
+        'https://my-json-server.typicode.com/jihyun-um/mo-mokji-server/menus'
+      )
+      .then(response => {
+        console.log(response);
+        setItems(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, [items]);
 
   const handlePick = () => {
