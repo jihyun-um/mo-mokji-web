@@ -1,7 +1,9 @@
 # 뭐 먹지? - axios로 REST API 호출하기
 
 ## Objective
-[axios](https://github.com/axios/axios)를 사용하여 React에서 간단하게 REST API를 호출하는 방법 배워보기.
+axios를 사용하여 React에서 간단하게 REST API를 호출하는 방법 배워보기.
+- [axios](https://github.com/axios/axios)
+- [axios vs. fetch](https://blog.logrocket.com/axios-or-fetch-api/)
 
 ## Recap
 `string list`로 되어 있는 `items`를 `key-value object list`로 변경해 사용할 수 있도록 `OptionList`와 `Option` 컴포넌트 변경 ([sample output](https://my-json-server.typicode.com/jihyun-um/mo-mokji-server/menus))
