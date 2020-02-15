@@ -6,10 +6,11 @@ const OptionList = props => {
   return (
     <div>
       <button onClick={props.handleRemoveAllOptions}>나 이제 배불러</button>
-      {props.items.map((item, index) => (
+      {props.items.map(item => (
         <Option
-          key={index}
-          text={item}
+          key={item.id}
+          id={item.id}
+          name={item.name}
           handleRemoveOption={props.handleRemoveOption}
         />
       ))}

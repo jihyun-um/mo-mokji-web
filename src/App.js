@@ -27,7 +27,7 @@ const App = () => {
 
   const handlePick = () => {
     const randomIndex = Math.floor(Math.random() * items.length);
-    setSelectedItem(items[randomIndex]);
+    setSelectedItem(items[randomIndex].name);
   };
 
   const clearSelectedItem = () => {

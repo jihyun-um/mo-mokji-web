@@ -3,8 +3,8 @@ import React from 'react';
 const Option = props => {
   return (
     <div>
-      {props.text}{' '}
-      <button onClick={e => props.handleRemoveOption(props.text)}>삭제</button>
+      {props.name}{' '}
+      <button onClick={e => props.handleRemoveOption(props.id)}>삭제</button>
     </div>
   );
 };
