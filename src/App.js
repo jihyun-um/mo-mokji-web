@@ -11,19 +11,19 @@ const App = () => {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState();
 
-  useEffect(() => {
+  const fetchMenuItems = () => {
     axios
-      .get(
-        'https://my-json-server.typicode.com/jihyun-um/mo-mokji-server/menus'
-      )
+      .get('http://localhost:3001/menus')
       .then(response => {
         console.log(response);
         setItems(response.data);
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       });
-  }, [items]);
+  };
+
+  useEffect(fetchMenuItems, []);
 
   const handlePick = () => {
     const randomIndex = Math.floor(Math.random() * items.length);
@@ -34,14 +34,22 @@ const App = () => {
     setSelectedItem(undefined);
   };
 
-  const addNewItem = newItem => {
-    if (newItem && !items.includes(newItem)) {
-      setItems(items.concat(newItem));
-    }
+  const addNewItem = newItemName => {
+    axios
+      .post('http://localhost:3001/menus', { name: newItemName })
+      .then(response => {
+        console.log(response);
+        fetchMenuItems();
+      });
   };
 
   const removeItem = itemToRemove => {
-    setItems(items.filter(item => item !== itemToRemove));
+    axios
+      .delete(`http://localhost:3001/menus/${itemToRemove}`)
+      .then(response => {
+        console.log(response);
+        fetchMenuItems();
+      });
   };
 
   const removeAllItems = () => {
