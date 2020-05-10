@@ -7,13 +7,13 @@ import AddOption from './components/AddOption';
 import DecisionModal from './components/DecisionModal';
 
 const App = () => {
-  const [items, setItems] = useState([]);
-  const [selectedItem, setSelectedItem] = useState();
+  const [items, setItems] = useState<string[]>([]);
+  const [selectedItem, setSelectedItem] = useState<string>('');
 
   useEffect(() => {
-    const localItems = JSON.parse(localStorage.getItem('items'));
+    const localItems: string | null = localStorage.getItem('items');
     if (localItems != null) {
-      setItems(localItems);
+      setItems(JSON.parse(localItems));
     }
   }, []);
 
@@ -21,26 +21,26 @@ const App = () => {
     localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
 
-  const handlePick = () => {
-    const randomIndex = Math.floor(Math.random() * items.length);
+  const handlePick = (): void => {
+    const randomIndex: number = Math.floor(Math.random() * items.length);
     setSelectedItem(items[randomIndex]);
   };
 
-  const clearSelectedItem = () => {
-    setSelectedItem(undefined);
+  const clearSelectedItem = (): void => {
+    setSelectedItem('');
   };
 
-  const addNewItem = newItem => {
+  const addNewItem = (newItem: string): void => {
     if (newItem && !items.includes(newItem)) {
       setItems(items.concat(newItem));
     }
   };
 
-  const removeItem = itemToRemove => {
-    setItems(items.filter(item => item !== itemToRemove));
+  const removeItem = (itemToRemove: string): void => {
+    setItems(items.filter((item) => item !== itemToRemove));
   };
 
-  const removeAllItems = () => {
+  const removeAllItems = (): void => {
     setItems([]);
   };
 

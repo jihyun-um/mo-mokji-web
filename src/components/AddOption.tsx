@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
-const AddOption = props => {
-  const handleSubmit = event => {
+type AddOptionProps = {
+  addNewOption(newOption: string): void;
+};
+
+const AddOption: FunctionComponent<AddOptionProps> = (props) => {
+  const handleSubmit = (event: any): void => {
     event.preventDefault();
 
     const newOption = event.target.elements.option.value.trim();
